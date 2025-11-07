@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, Code2, Palette, Sparkles, ArrowRight } from 'lucide-react';
+import { Link } from "react-router-dom"
+import { Github, Linkedin, Mail, ExternalLink, Code2, Palette, Sparkles, ArrowRight } from "lucide-react";
 import './index.css'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -9,7 +11,7 @@ function App() {
   const [isVisible, setIsVisible] = useState({});
   const [isDark, setIsDark] = useState(true);
 
-   useEffect(() => {
+  useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -22,7 +24,7 @@ function App() {
       title: "Sacooo",
       description: "A full-stack web app that helps Kenyan SACCOs & Chamas manage contributions, loans, and approvals digitally instead of using WhatsApp and Excel.",
       tech: ["React", "NodeJs", "Mysql", "tailwind"],
-      github: ["https://github.com/Bilal-ahmed-mohamed/Sacco-Chama-Management-System"],
+      github: ["https://github.com/Bilal-ahmed-mohamed/Sacco-Chama-Management-System."],
       link: ["https://sacooo.netlify.app/"],
       color: "from-blue-500 to-cyan-500"
     },
@@ -37,27 +39,28 @@ function App() {
     {
       title: "Habibullah Agency",
       description: "A website for an agency that offers Umrah and Hajj packages to Makah — making pilgrimage planning easy and stress-free.",
-      tech: [ "React", "Tailwind"],
+      tech: ["React", "Tailwind"],
       github: [" https://github.com/Bilal-ahmed-mohamed/umrah-agency-website"],
       link: ["https://umrah-agency-website.vercel.app/"],
       color: "from-orange-500 to-red-500"
-     
+
     }
   ];
 
   const skills = [
     { name: "React", icon: "⚛️", category: "Frontend" },
-    { name: "TypeScript", icon: "📘", category: "Language" },
+    { name: "Javascript", icon: "📘", category: "Language" },
     { name: "Node.js", icon: "🟢", category: "Backend" },
-    { name: "UI/UX Design", icon: "🎨", category: "Design" },
-    { name: "Python", icon: "🐍", category: "Language" },
-    { name: "Cloud (AWS)", icon: "☁️", category: "DevOps" }
+    { name: "MySql", icon: "🎨", category: "Database" },
+    { name: "PHP", icon: "🐍", category: "Language" },
+    { name: "MongoDb", icon: "🐍", category: "Database" },
+
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
       {/* Animated Background Gradient */}
-      <div 
+      <div
         className="fixed inset-0 opacity-30 pointer-events-none"
         style={{
           background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(34, 211, 238, 0.15), transparent 40%)`
@@ -68,21 +71,21 @@ function App() {
       <nav className="fixed top-0 w-full z-50 backdrop-blur-md bg-gray-900/50 border-b border-white/10">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-            YourName
+            Bilal
           </div>
           <div className="flex gap-6">
-            {['Home', 'Projects', 'Skills', 'Contact'].map((item) => (
-              <button
+            {['Home', 'Projects', 'Skills', 'Education', 'Contact'].map((item) => (
+              <a
                 key={item}
-                onClick={() => setActiveSection(item.toLowerCase())}
-                className={`transition-all duration-300 ${
-                  activeSection === item.toLowerCase()
-                    ? 'text-cyan-400 scale-110'
-                    : 'text-gray-300 hover:text-white'
-                }`}
+                href={`#${item.toLowerCase()}`}
+                // onClick={() => setActiveSection(item.toLowerCase())}
+                className={`transition-all duration-300 ${activeSection === item.toLowerCase()
+                  ? 'text-cyan-400 scale-110'
+                  : 'text-gray-300 hover:text-white'
+                  }`}
               >
                 {item}
-              </button>
+              </a>
             ))}
           </div>
         </div>
@@ -97,23 +100,23 @@ function App() {
               👋
             </div>
           </div>
-          
+
           <h1 className="text-6xl md:text-7xl font-bold mb-4">
             Hi, I'm{' '}
             <span className="bg-gradient-to-r from-cyan-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent animate-pulse">
               Bilal Ahmed Mohamed
             </span>
           </h1>
-          
+
           <p className="text-2xl md:text-3xl text-gray-300 mb-8">
-            Full Stack Developer 
+            Full Stack Developer
           </p>
-          
+
           <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
             I craft beautiful digital experiences with clean code and innovative design.
             Specializing in modern web technologies and user-centric solutions.
           </p>
-          
+
           <div className="flex gap-4 justify-center pt-8">
             <a href="#projects" className="group px-8 py-4 bg-gradient-to-r from-cyan-600 to-emerald-600 rounded-full font-semibold flex items-center gap-2 hover:scale-105 transition-transform">
               View My Work
@@ -156,16 +159,16 @@ function App() {
                 className="group relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/30 transition-all duration-300 hover:scale-105 hover:-translate-y-2"
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity`} />
-                
+
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-4">
                     <Sparkles className="text-cyan-400" size={24} />
-                    <ExternalLink className="opacity-0 group-hover:opacity-100 transition-opacity text-gray-400" size={20} />
+
                   </div>
-                  
+
                   <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
                   <p className="text-gray-400 mb-4 leading-relaxed">{project.description}</p>
-                  
+
                   <div className="flex flex-wrap gap-2">
                     {project.tech.map((tech, i) => (
                       <span
@@ -176,6 +179,27 @@ function App() {
                       </span>
                     ))}
                   </div>
+
+                  <div className="flex justify-evenly gap-4 mt-3">
+                    <a
+                      href={project.github[0]}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-gray-400 hover:text-white transition"
+                    >
+                      <Github size={24} />
+                    </a>
+
+                    <a
+                      href={project.link[0]}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-gray-400 hover:text-white transition"
+                    >
+                      <ExternalLink size={24} />
+                    </a>
+                  </div>
+
                 </div>
               </div>
             ))}
@@ -201,7 +225,7 @@ function App() {
                 className="group relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity" />
-                
+
                 <div className="relative z-10 text-center">
                   <div className="text-4xl mb-3">{skill.icon}</div>
                   <h3 className="text-lg font-bold mb-1">{skill.name}</h3>
@@ -213,6 +237,33 @@ function App() {
         </div>
       </section>
 
+      <section id="education" className="py-16 text-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-10 text-center">Education</h2>
+
+          <div className="space-y-6">
+
+            <div className="border border-gray-700 p-6 rounded-xl bg-[#131416] hover:border-cyan-400 transition">
+              <h3 className="text-xl font-semibold">Bachelor Of Science In Computer Science</h3>
+              <p className="text-gray-400">Zetech University — Kenya</p>
+              <p className="text-sm text-gray-500 mt-1">2023 — 2024</p>
+            </div>
+
+            <div className="border border-gray-700 p-6 rounded-xl bg-[#131416] hover:border-cyan-400 transition">
+              <h3 className="text-xl font-semibold">Diploma In Computer Science</h3>
+              <p className="text-gray-400">Zetech University — Kenya</p>
+              <p className="text-sm text-gray-500 mt-1">2021 — 2022</p>
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+      </section>
+
+
       {/* Contact Section */}
       <section id="contact" className="min-h-screen py-20 px-6 flex items-center">
         <div className="max-w-4xl mx-auto w-full text-center">
@@ -220,7 +271,7 @@ function App() {
           <p className="text-gray-400 text-xl mb-12">
             Have a project in mind? Let's create something amazing together.
           </p>
-          
+
           <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-12 border border-white/10">
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               <div className="text-left">
@@ -256,11 +307,11 @@ function App() {
 
       {/* Footer */}
       <footer className="py-8 text-center text-gray-400 border-t border-white/10">
-        <p>© 2025 Your Name. Built with React & Tailwind CSS</p>
+        <p>© 2025 Bilal Ahmed Mohamed</p>
       </footer>
     </div>
   );
-  
+
 }
 
 export default App
